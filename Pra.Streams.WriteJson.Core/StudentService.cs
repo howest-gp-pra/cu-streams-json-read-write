@@ -17,6 +17,7 @@ namespace Pra.Streams.WriteJson.Core
 
         public StudentService()
         {
+            string path = Environment.CurrentDirectory;
             GetStudents();
         }
         private void GetStudents()
@@ -35,18 +36,20 @@ namespace Pra.Streams.WriteJson.Core
         }
         private void DoSeeding()
         {
-            students = new List<Student>();
-            students.Add(new Student("Janssens", "Jan", "Brugge"));
-            students.Add(new Student("Willems", "Wim", "Brugge"));
-            students.Add(new Student("Kaerels", "Charel", "Brugge"));
-            students.Add(new Student("Taer", "Guy", "Brugge"));
-            students.Add(new Student("Banjo", "Lien", "Brugge"));
-            students.Add(new Student("Tumas", "Marie", "Brugge"));
+            students = new List<Student>
+            {
+                new Student("Janssens", "Jan", "Brugge"),
+                new Student("Willems", "Wim", "Brugge"),
+                new Student("Kaerels", "Charel", "Brugge"),
+                new Student("Taer", "Guy", "Brugge"),
+                new Student("Banjo", "Lien", "Brugge"),
+                new Student("Tumas", "Marie", "Brugge")
+            };
         }
 
         public void WriteJson()
         {
-            var content = JsonConvert.SerializeObject(students);
+            string content = JsonConvert.SerializeObject(students);
             File.WriteAllText(Environment.CurrentDirectory + "\\students.json", content);
         }
     }
